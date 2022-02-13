@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Skeivt Opprør</title>
+  <script src="vue.js"></script>
+  <script src="vis-timeline-graph2d.min.js"></script>
+  <link href="vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+  <script src="csv2json.js"></script>
+</head>
+<style>
+body {
+  background: black;
+  color: white;
+  text-align: center;
+  font-family: Arial, Serif;
+  margin-bottom: 4em;
+}
+.logo {
+  min-width: 20em;
+  width: 25vw;
+}
+.content {
+  background: #1b1b1b;
+  min-width: 20em;
+  width: 70vw;
+  max-width: 60em;
+  border: 0.2em solid #f700ff;
+  border-radius: 1em;
+  margin: auto;
+  text-align: left;
+  padding: 2em;
+  margin-top: 1em;
+}
+h1 {
+  margin-top: 0em;
+}
+.menu a {
+  margin: 1em;
+}
+a:link {
+  color: white;
+}
+a:visited {
+  color: gray;
+}
+a:hover {
+  color: white;
+}
+a:active {
+  color: white;
+}
+
+.vis-item {
+  border-color: black;
+  background-color: gray;
+  color: white;
+}
+.vis-item.vis-selected {
+  border-color: white;
+  background-color: #f700ff;
+  color: black;
+}
+.vis-item.vis-dot {
+  border-width: 0.4em;
+  border-radius: 0.4em;
+}
+.vis-time-axis .vis-text {
+  color: white;
+}
+</style>
+<body>
+  <div id="app">
+    <img src="stjernelogo.svg" class="logo"></img>
+    <br/>
+    <div class="menu">
+      <a href="?page=events">Arrangementer</a>
+      <a href="?page=join">Bli med</a>
+      <a href="?page=about">Hvem er vi</a>
+      <a href="/files">Referat</a>
+    </div>
+    <div class="content">
+
+      <div v-if="page == 'events'">
+        <h1>Arrangementer</h1>
+        <div v-if="event !== null">
+          <b>Hva:</b> {{ event.content || "" }}<br/>
+          <b>Hvor:</b> {{ event.place || "" }}<br/>
+          <b>Start:</b> {{ event.start || "" }}<br/>
+          <b>Slutt:</b> {{ event.end || "" }}<br/>
+          <b>Beskrivelse:</b><br/>
+          {{ event.description || "" }}
+          <br/>
+          <br/>
+        </div>
+      </div>
+
+      <div v-if="page == 'join'">
+        <h1>Bli med</h1>
+        Noe tekst her...
+      </div>
+
+      <div v-if="page == 'about'">
+        <h1>Hvem er vi</h1>
+        Noe tekst her...
+      </div>
+
+      <div id="visualization"></div>
+    </div>
+  </div>
+  <script src="app.js"></script>
+<body>
+</html>
